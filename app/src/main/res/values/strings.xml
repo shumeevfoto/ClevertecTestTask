@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">KotlinTest</string>
+    <string name="Enter_text">Введите текст</string>
+    <string name="Enter_number">Введите число</string>
+    <string name="result_dialog_title">Pезультат операции</string>
+    <string name="button_title_dialog">Done</string>
+    <string name="error_data">Error in getting data</string>
+    <string name="Title_button_post">Отправить данные</string>
+    <string name="logo_clevertec">Логотип компании Клевертек</string>
+</resources>
