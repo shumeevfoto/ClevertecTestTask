@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.*
+import com.second.kotlintest.data.GetClevertecRepository
 import com.second.kotlintest.di.RetroServiceInterface
 import com.second.kotlintest.model.PostForm
 import com.second.kotlintest.model.RecyclerList
@@ -31,7 +32,8 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         viewModelScope.launch(Dispatchers.IO) {
             state.postValue(State.Loading)
             delay(1000)
-            val response = mService.getDataFromAPI()
+            val repository = GetClevertecRepository(mService)
+            val response = repository.getParamRecyclerList()
             liveDataList.postValue(response)
             state.postValue(State.Loaded)
         }
