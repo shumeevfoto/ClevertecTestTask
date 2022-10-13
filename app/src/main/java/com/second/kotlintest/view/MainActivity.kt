@@ -20,11 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
 
 
-    private val recyclerView: RecyclerView
-        get() = findViewById(R.id.recyclerView)
-
-    private val progressBar:ProgressBar
-        get() = findViewById(R.id.progressBar)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +37,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerViewAdapter = RecyclerViewAdapter()
-        recyclerView.adapter = recyclerViewAdapter
+        binding.recyclerView.adapter = recyclerViewAdapter
     }
 
     private fun initViewModel(imageView: ImageView) {
@@ -65,11 +60,17 @@ class MainActivity : AppCompatActivity() {
         mainActivityViewModel.state.observe(this) {
             when (it) {
                 is MainActivityViewModel.State.Loaded -> {
-                    progressBar.visibility = ProgressBar.INVISIBLE
+                    binding.progressBar.visibility = ProgressBar.INVISIBLE
+                    binding.statusImage.visibility = ImageView.INVISIBLE
                 }
                 is MainActivityViewModel.State.Loading -> {
-                    progressBar.visibility = ProgressBar.VISIBLE
+                    binding.progressBar.visibility = ProgressBar.VISIBLE
+                    binding.statusImage.visibility = ImageView.INVISIBLE
 
+                }
+                is MainActivityViewModel.State.Error ->{
+                    binding.progressBar.visibility = ProgressBar.INVISIBLE
+                    binding.statusImage.visibility = ImageView.VISIBLE
                 }
             }
         }

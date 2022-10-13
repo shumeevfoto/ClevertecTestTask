@@ -30,12 +30,17 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     fun makeApiCall() {
 
         viewModelScope.launch(Dispatchers.IO) {
-            state.postValue(State.Loading)
-            delay(1000)
-            val repository = GetClevertecRepository(mService)
-            val response = repository.getParamRecyclerList()
-            liveDataList.postValue(response)
-            state.postValue(State.Loaded)
+            try {
+                state.postValue(State.Loading)
+                delay(1000)
+                val repository = GetClevertecRepository(mService)
+                val response = repository.getParamRecyclerList()
+                liveDataList.postValue(response)
+                state.postValue(State.Loaded)
+            }catch (e:Exception){
+                state.postValue(State.Error)
+            }
+
         }
 
     }
@@ -44,13 +49,18 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     fun sendPost(list: List<String>) {
 
         viewModelScope.launch(Dispatchers.IO) {
-            state.postValue(State.Loading)
-            delay(1000)
-            val post = PostForm(PostForm.Form(list[0], list[1], list[2]))
-            val res = mService.sendRequest(post)
-            val results = res.result
-            liveDataResult.postValue(results)
-            state.postValue(State.Loaded)
+            try {
+                state.postValue(State.Loading)
+                delay(1000)
+                val post = PostForm(PostForm.Form(list[0], list[1], list[2]))
+                val res = mService.sendRequest(post)
+                val results = res.result
+                liveDataResult.postValue(results)
+                state.postValue(State.Loaded)
+            }catch (e:Exception){
+                state.postValue(State.Error)
+            }
+
         }
 
     }
@@ -58,6 +68,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     sealed class State {
         object Loading : State()
         object Loaded : State()
+        object Error: State()
     }
 
 }
