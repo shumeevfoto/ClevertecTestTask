@@ -58,7 +58,6 @@ class MainFragment : Fragment() {
                 recyclerViewAdapter.setUpdatedData(it.fields)
                 loadImage(it.image, imageView)
                 activity?.title = it.title
-
             } else {
                 Toast.makeText(requireContext(), getString(R.string.error_data), Toast.LENGTH_SHORT).show()
             }
