@@ -31,16 +31,16 @@ class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder
     }
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val txt_title: TextView = view.findViewById(R.id.txt_name)
+        private val txt_title: TextView? = view.findViewById(R.id.txt_name)
         val editText: TextView? = view.findViewById(R.id.editText)
         val editTextNumber: TextView? = view.findViewById(R.id.editTextNumber)
-        val value1: RadioButton? = view.findViewById(R.id.value1)
-        val value2: RadioButton? = view.findViewById(R.id.value2)
-        val value3: RadioButton? = view.findViewById(R.id.value3)
-        val value4: RadioButton? = view.findViewById(R.id.value4)
+        private val value1: RadioButton? = view.findViewById(R.id.value1)
+        private val value2: RadioButton? = view.findViewById(R.id.value2)
+        private val value3: RadioButton? = view.findViewById(R.id.value3)
+        private val value4: RadioButton? = view.findViewById(R.id.value4)
 
         fun bind(data: Field) {
-            txt_title.text = data.title
+            txt_title?.text = data.title
             value1?.text = data.values.none
             value2?.text = data.values.v1
             value3?.text = data.values.v2
