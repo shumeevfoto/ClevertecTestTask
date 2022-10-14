@@ -18,9 +18,12 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     @Inject
     lateinit var mService: RetroServiceInterface
 
-    val state: MutableLiveData<State> = MutableLiveData()
-    val liveDataList: MutableLiveData<RecyclerList> = MutableLiveData()
-    val liveDataResult: MutableLiveData<String> = MutableLiveData()
+    private val _state: MutableLiveData<State> = MutableLiveData()
+    val state:LiveData<State> = _state
+    private val _liveDataList: MutableLiveData<RecyclerList> = MutableLiveData()
+    val liveDataList:LiveData<RecyclerList> = _liveDataList
+    private val _liveDataResult: MutableLiveData<String> = MutableLiveData()
+    val liveDataResult:LiveData<String> = _liveDataResult
 
 
     init {
@@ -31,14 +34,14 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                state.postValue(State.Loading)
-                delay(1000)
+                _state.postValue(State.Loading)
+                delay(500)
                 val repository = GetClevertecRepository(mService)
                 val response = repository.getParamRecyclerList()
-                liveDataList.postValue(response)
-                state.postValue(State.Loaded)
+                _liveDataList.postValue(response)
+                _state.postValue(State.Loaded)
             } catch (e: Exception) {
-                state.postValue(State.Error)
+                _state.postValue(State.Error)
             }
 
         }
@@ -50,15 +53,15 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                state.postValue(State.Loading)
-                delay(1000)
+                _state.postValue(State.Loading)
+                delay(500)
                 val post = PostForm(PostForm.Form(list[0], list[1], list[2]))
                 val res = mService.sendRequest(post)
                 val results = res.result
-                liveDataResult.postValue(results)
-                state.postValue(State.Loaded)
+                _liveDataResult.postValue(results)
+                _state.postValue(State.Loaded)
             } catch (e: Exception) {
-                state.postValue(State.Error)
+                _state.postValue(State.Error)
             }
 
         }
