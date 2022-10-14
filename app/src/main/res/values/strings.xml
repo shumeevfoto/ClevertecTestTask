@@ -7,4 +7,9 @@
     <string name="error_data">Error in getting data</string>
     <string name="Title_button_post">Отправить данные</string>
     <string name="logo_clevertec">Логотип компании Клевертек</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_start">Start</string>
+    <string name="welcome_text">Добро пожаловать в демонстрационное приложение</string>
+    <string name="title_start_fragment">Демонстрационное приложение</string>
+    <string name="desc_status_image">Отсутствует сетевое соединение</string>
 </resources>

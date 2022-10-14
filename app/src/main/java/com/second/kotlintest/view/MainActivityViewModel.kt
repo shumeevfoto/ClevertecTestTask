@@ -37,7 +37,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
                 val response = repository.getParamRecyclerList()
                 liveDataList.postValue(response)
                 state.postValue(State.Loaded)
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 state.postValue(State.Error)
             }
 
@@ -57,7 +57,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
                 val results = res.result
                 liveDataResult.postValue(results)
                 state.postValue(State.Loaded)
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 state.postValue(State.Error)
             }
 
@@ -68,7 +68,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     sealed class State {
         object Loading : State()
         object Loaded : State()
-        object Error: State()
+        object Error : State()
     }
 
 }
