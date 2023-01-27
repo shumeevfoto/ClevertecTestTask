@@ -37,7 +37,7 @@ class MainFragment : Fragment() {
         initRecyclerView()
         binding.buttonSend.setOnClickListener {
             val input = recyclerViewAdapter.getData()
-            mainActivityViewModel.sendPost(listOf(input[0], input[1], input[2]))
+            mainActivityViewModel.sendPost(input[0], input[1], input[2])
 
         }
     }
@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
 
     private fun initRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewAdapter = RecyclerViewAdapter()
+        recyclerViewAdapter = RecyclerViewAdapter(requireContext())
         binding.recyclerView.adapter = recyclerViewAdapter
     }
 

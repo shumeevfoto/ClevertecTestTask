@@ -49,13 +49,13 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     }
 
 
-    fun sendPost(list: List<String>) {
+    fun sendPost(listText: List<String>, listNumber: List<String>, listValue: List<String>) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _state.postValue(State.Loading)
                 delay(500)
-                val post = PostForm(PostForm.Form(list[0], list[1], list[2]))
+                val post = PostForm(PostForm.Form(listText.toString(), listNumber.toString(), listValue.toString()))
                 val res = mService.sendRequest(post)
                 val results = res.result
                 _liveDataResult.postValue(results)

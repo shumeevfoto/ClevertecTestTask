@@ -5,20 +5,22 @@ data class RecyclerList(
     val title: String,
     val fields: List<Field>
 )
-
+@kotlinx.serialization.Serializable
 data class Field(
     var title:String,
     val name: String,
     val type: String,
     val values: Values
 )
-
+@kotlinx.serialization.Serializable
 data class Values(
-    val none: String = "не выбрано",
-    val v1: String,
-    val v2: String,
-    val v3: String
+    var valt: Map<String, String>
 )
+{
+    fun setStringNumberMap(map: Map<String, String>) {
+        valt = map
+    }
+}
 
 data class PostForm(
     val form: Form
@@ -33,3 +35,4 @@ data class PostForm(
 data class Result(
     val result: String
 )
+
