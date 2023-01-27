@@ -5,7 +5,7 @@ package com.second.kotlintest.di
 import com.google.gson.*
 import com.google.gson.JsonParseException
 import com.google.gson.reflect.TypeToken
-import com.second.kotlintest.model.Values
+import com.second.kotlintest.model.Field
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -40,17 +40,15 @@ class RetroModule {
         return retrofit.create(RetroServiceInterface::class.java)
     }
 
-    class ResponseDeserializer : JsonDeserializer<Values> {
+    class ResponseDeserializer : JsonDeserializer<Field> {
         @Throws(JsonParseException::class)
         override fun deserialize(
             json: JsonElement,
             typeOfT: Type,
             context: JsonDeserializationContext,
-        ): Values {
-            val response: Values = Gson().fromJson(json, Values::class.java)
-            val ma = response.valt
-            var map: Map<String, String> = HashMap()
-            map = Gson().fromJson(json, map.javaClass) as Map<String, String>
+        ): Field {
+            val response: Field = Gson().fromJson(json, Field::class.java)
+            val map: Map<String, String> = response.values
             response.setStringNumberMap(map)
             return response
         }

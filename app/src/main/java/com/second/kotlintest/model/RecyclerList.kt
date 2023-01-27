@@ -10,15 +10,11 @@ data class Field(
     var title:String,
     val name: String,
     val type: String,
-    val values: Values
-)
-@kotlinx.serialization.Serializable
-data class Values(
-    var valt: Map<String, String>
+    var values: Map<String, String>
 )
 {
     fun setStringNumberMap(map: Map<String, String>) {
-        valt = map
+        values = map
     }
 }
 

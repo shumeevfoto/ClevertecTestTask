@@ -46,7 +46,7 @@ class RecyclerViewAdapter(context: Context) :
         fun bind(data: Field) {
             txt_title?.text = data.title
             val arr:List<String> = listOf("Test1", "Test2")
-            val value = data.values?.valt?.keys
+            val value = data.values?.values
             Toast.makeText(mContext, value.toString(), Toast.LENGTH_SHORT).show()
             val dataAdapter = ArrayAdapter(mContext!!,
                 android.R.layout.simple_spinner_item, arr)
