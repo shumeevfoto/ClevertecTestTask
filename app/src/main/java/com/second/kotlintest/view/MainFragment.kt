@@ -37,11 +37,10 @@ class MainFragment : Fragment() {
         initRecyclerView()
         binding.buttonSend.setOnClickListener {
             val input = recyclerViewAdapter.getData()
-            mainActivityViewModel.sendPost(input[0], input[1], input[2])
+            mainActivityViewModel.sendPost(input.text, input.number, input.checked)
 
         }
     }
-
 
 
     private fun initRecyclerView() {

@@ -5,7 +5,7 @@ data class RecyclerList(
     val title: String,
     val fields: List<Field>
 )
-@kotlinx.serialization.Serializable
+
 data class Field(
     var title:String,
     val name: String,
@@ -30,5 +30,11 @@ data class PostForm(
 
 data class Result(
     val result: String
+)
+
+data class Input(
+    val text: List<String>,
+    val number: List<Double>,
+    val checked: List<String>
 )
 

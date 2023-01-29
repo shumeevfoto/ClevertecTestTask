@@ -1,7 +1,5 @@
 package com.second.kotlintest.di
 
-//import okhttp3.logging.HttpLoggingInterceptor
-
 import com.google.gson.*
 import com.google.gson.JsonParseException
 import com.google.gson.reflect.TypeToken
@@ -58,7 +56,7 @@ class RetroModule {
         .registerTypeAdapter(
             object : TypeToken<Map<String, String>>() {}.type,
             ResponseDeserializer())
-    val gson: Gson = builder.create()
+    private val gson: Gson = builder.create()
 
 
 
